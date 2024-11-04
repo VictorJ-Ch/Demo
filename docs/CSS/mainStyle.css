@@ -1,0 +1,55 @@
+html{
+    background-color: whitesmoke;
+    font-family: "Montserrat", sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+/*DOM content*/
+body{
+    background-color: whitesmoke !important;
+}
+.mainDiv{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
+}
+.title{
+    font-size: 40px;
+    text-align: center;
+    font-weight: 700;
+}
+/*BOXES*/
+.container{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    display: inline-grid;
+    vertical-align: center;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0.5px 0.5px 5px black;
+    border-radius: 8px;
+}
+/*IMGS*/
+.itemImg{
+    border-radius: 10px;
+    margin: 10px;
+    max-width: 400px;
+    max-height: 350px;
+    width: auto;
+    height: auto;
+}
+/*BTTNS*/
+.bttnCenter{
+    text-align: center;
+}
+/*FOOTER*/
+.footerTitle{
+    font-size: 30px;
+    text-align: left;
+    font-weight: 700;
+}
