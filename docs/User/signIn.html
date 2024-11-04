@@ -1,52 +1,92 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Sign In</title>
-        <link rel="stylesheet" href="../CSS/formulariesStyle.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    </head>
-    <body>
-        <div class="mainDiv">
-            <header>
-                <nav class="navbar navbar-expand-lg">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="../index.html">Shop Simulator</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </div>
-                </nav>
-            </header>
-            <main>
-                <div class="container">
-                    <div class="box">
-                        <div class="signup-container">
-                            <p class="title">Sign In</p>
-                            <form>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Password" required>
-                                </div>
-                                <a href="../Content/start.html" class="btn btn-primary w-100">Sign In</a>
-                            </form>
-                            <p class="mt-3 text-center">New member? <a href="./signUp.html">Sign Up</a></p>
-                        </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="../CSS/formulariesStyle.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <div class="mainDiv">
+        <header>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="../index.html">Shop Simulator</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="container">
+                <div class="box">
+                    <div class="signin-container" id="sign-in">
+                        <p class="title">Sign In</p>
+                        <form>
+                            <div class="mb-3">
+                                <label for="email-signin" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email-signin" placeholder="Enter your email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password-signin" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password-signin" placeholder="Password" required>
+                            </div>
+                            <button type="button" class="btn btn-primary w-100" id="email-signin-btn">Sign In</button>
+                        </form>
+                        <p class="mt-3 text-center">New member? <a href="./signUp.html">Sign Up</a></p>
                     </div>
                 </div>
-            </main>
-            <footer>
-                <p class="footerTitle">Important</p>
-                <p>This is not a real commerce, just an online simulator</p>
-            </footer>
-        </div>
-    </body>
+            </div>
+        </main>
+        <footer>
+            <p class="footerTitle">Important</p>
+            <p>This is not a real commerce, just an online simulator</p>
+        </footer>
+    </div>
+
     <!--SCRIPTS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="../JS/SDK.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+        // FIREBASE SETTINGS
+        const firebaseConfig = {
+            apiKey: "AIzaSyAXMKsSaYNbOzsSOXMlWCLSRP0g42eWBR8",
+            authDomain: "shop-simulator-f8ae0.firebaseapp.com",
+            databaseURL: "https://shop-simulator-f8ae0-default-rtdb.firebaseio.com",
+            projectId: "shop-simulator-f8ae0",
+            storageBucket: "shop-simulator-f8ae0.firebasestorage.app",
+            messagingSenderId: "185105353771",
+            appId: "1:185105353771:web:d113d3da96d927c5472e6e",
+            measurementId: "G-T6550D2PVD"
+        };
+
+        // INITIALIZE FIREBASE
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        // SIGN IN
+        document.getElementById('email-signin-btn').addEventListener('click', () => {
+            const email = document.getElementById('email-signin').value;
+            const password = document.getElementById('password-signin').value;
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    console.log(userCredential.user);
+                    // NEW VIEW
+                    window.location.href = '../Content/start.html';
+                })
+                .catch((error) => {
+                    console.error(error);
+                    // ERROR MSN
+                    alert("Failed to sign in. Please check your email and password.");
+                });
+        });
+    </script>
+</body>
 </html>
